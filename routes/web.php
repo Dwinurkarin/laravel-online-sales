@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductCatalogController;
 use App\Http\Controllers\Admin\ShippingServiceController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -56,3 +57,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::put('/shipping/{shippingService}', [ShippingServiceController::class, 'update'])->name('shipping.update');
     Route::delete('/shipping/{shippingService}', [ShippingServiceController::class, 'destroy'])->name('shipping.destroy');
 });
+
+Route::get('/', [ProductCatalogController::class, 'index'])->name('shop.index');
+Route::get('/produk/{product:slug}', [ProductCatalogController::class, 'show'])->name('shop.show');
